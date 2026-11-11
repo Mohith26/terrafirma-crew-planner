@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mission Control | Crew Planner</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="tb-left"><span class="brand">MISSION CONTROL</span><button class="btn">Operate</button><button class="btn on">Crew Planner</button><button class="btn">Surfaces</button><button class="btn">Objectives</button></div>
+    <div class="tb-right"><span>Shift A &middot; 07:00&ndash;17:00</span><span class="sep">|</span><span id="siteName">&hellip;</span><span class="sep">|</span><span>Status: <b class="g">PLANNING</b></span></div>
+  </div>
+
+  <div class="cols">
+    <!-- left column -->
+    <div class="col left">
+      <div class="panel">
+        <div class="ptitle">Objectives</div>
+        <div class="pbody" id="objectives"></div>
+      </div>
+      <div class="panel grow">
+        <div class="ptitle">Interventions</div>
+        <div class="pbody"><div class="kv">Fitted on: <b class="g"><span id="nTrain">&hellip;</span> shifts</b></div><div id="causes"></div></div>
+      </div>
+    </div>
+
+    <!-- center -->
+    <div class="col center">
+      <div class="panel">
+        <div class="ptitle">Operator Load Forecast</div>
+        <div class="pbody chartbody"><canvas id="loadChart"></canvas></div>
+        <div class="legend" id="loadLegend"></div>
+      </div>
+      <div class="row3">
+        <div class="panel">
+          <div class="ptitle">Crew Plan</div>
+          <div class="pbody">
+            <div class="kv">State: <b class="g" id="crewState">&hellip;</b></div>
+            <div id="crewBlocks"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ptitle">Service Level</div>
+          <div class="pbody">
+            <div class="kv">Target: <b class="g">WAIT &le; 5% &middot; SAFETY P95 &le; 60 s</b></div>
+            <div class="btnrow" id="policyBtns"></div>
+            <div class="readouts" id="slReadouts"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ptitle">Backtest</div>
+          <div class="pbody">
+            <div class="kv">Held-out shifts: <b class="g" id="btN">&hellip;</b></div>
+            <div class="readouts" id="btReadouts"><div class="fine">running&hellip;</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ptitle">Simulated Shift <span class="sub" id="tlSub"></span></div>
+        <div class="pbody"><canvas id="timeline" height="250"></canvas><div class="legend tl" id="tlLegend"></div></div>
+      </div>
+    </div>
+
+    <!-- right column -->
+    <div class="col right">
+      <div class="panel">
+        <div class="ptitle">What To Automate Next</div>
+        <div class="pbody" id="roi"></div>
+      </div>
+      <div class="panel grow">
+        <div class="ptitle">Fleet</div>
+        <div class="pbody fleet" id="fleet"></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Unofficial concept demo by Mohith Gajjela. Not affiliated with TerraFirma. Synthetic data. Every number is computed in this page from the synthetic shift history (core/crew.js).</div>
+</div>
+<script src="data/history.js"></script>
+<script src="core/crew.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

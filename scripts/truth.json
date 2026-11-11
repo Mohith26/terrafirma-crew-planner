@@ -1,0 +1,184 @@
+{
+ "site": {
+  "hourly": [
+   4.5,
+   2.6,
+   2,
+   2.2,
+   2.6,
+   4.2,
+   3,
+   2.2,
+   2,
+   2.8
+  ],
+  "spill": [
+   0.55,
+   0.3,
+   0.15
+  ]
+ },
+ "rates": {
+  "OBSTACLE": {
+   "POND_EXCAVATION": [
+    0.5,
+    0.45,
+    5
+   ],
+   "MASS_EXCAVATION": [
+    0.4,
+    0.4,
+    5
+   ],
+   "ROUGH_GRADING": [
+    0.6,
+    0.5,
+    6
+   ],
+   "FINE_GRADING": [
+    0.3,
+    0.3,
+    6
+   ],
+   "CLEARING": [
+    1.2,
+    0.6,
+    5
+   ],
+   "STOCKPILE": [
+    0.4,
+    0.3,
+    5
+   ],
+   "COMPACTION": [
+    0.2,
+    0.2,
+    6
+   ]
+  },
+  "GRADE_CHECK": {
+   "POND_EXCAVATION": [
+    0.3,
+    0.3,
+    8
+   ],
+   "ROUGH_GRADING": [
+    0.4,
+    0.3,
+    8
+   ],
+   "FINE_GRADING": [
+    1,
+    0.5,
+    8
+   ],
+   "COMPACTION": [
+    0.2,
+    0.2,
+    8
+   ]
+  },
+  "MANUAL": {
+   "POND_EXCAVATION": [
+    0.15,
+    0.2,
+    10
+   ],
+   "MASS_EXCAVATION": [
+    0.1,
+    0.2,
+    10
+   ],
+   "ROUGH_GRADING": [
+    0.05,
+    0.1,
+    10
+   ],
+   "CLEARING": [
+    0.4,
+    0.25,
+    10
+   ],
+   "STOCKPILE": [
+    0.08,
+    0.1,
+    10
+   ]
+  },
+  "TRUCK_SPOT": {
+   "MASS_EXCAVATION": [
+    8,
+    0,
+    1
+   ],
+   "STOCKPILE": [
+    3,
+    0,
+    1
+   ]
+  },
+  "HANDOFF": {
+   "POND_EXCAVATION": [
+    0.4,
+    0,
+    1
+   ],
+   "MASS_EXCAVATION": [
+    0.3,
+    0,
+    1
+   ],
+   "ROUGH_GRADING": [
+    0.5,
+    0,
+    1
+   ],
+   "FINE_GRADING": [
+    0.4,
+    0,
+    1
+   ],
+   "CLEARING": [
+    0.3,
+    0,
+    1
+   ],
+   "STOCKPILE": [
+    0.4,
+    0,
+    1
+   ],
+   "COMPACTION": [
+    0.6,
+    0,
+    1
+   ]
+  }
+ },
+ "svc": {
+  "PERSON_STOP": [
+   0.7,
+   0.5
+  ],
+  "MANUAL": [
+   7,
+   0.5
+  ],
+  "OBSTACLE": [
+   1.3,
+   0.6
+  ],
+  "GRADE_CHECK": [
+   1.8,
+   0.5
+  ],
+  "TRUCK_SPOT": [
+   0.45,
+   0.4
+  ],
+  "HANDOFF": [
+   0.9,
+   0.4
+  ]
+ }
+}
