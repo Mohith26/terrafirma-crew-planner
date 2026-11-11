@@ -10,6 +10,7 @@
   const STATE = { POND_EXCAVATION: 'EXCAVATOR_GRADE_ASSIST', MASS_EXCAVATION: 'EXCAVATOR_LOAD_ASSIST', ROUGH_GRADING: 'DOZER_BLADE_ASSIST', FINE_GRADING: 'DOZER_CONTOUR_ASSIST', CLEARING: 'CLEARING_ASSIST', STOCKPILE: 'LOADER_ASSIST', COMPACTION: 'ROLLER_PASS_PLAN' };
   const hhmm = (m) => { const h = 7 + Math.floor(m / 60), mm = Math.round(m % 60); return String(h).padStart(2, '0') + ':' + String(mm).padStart(2, '0'); };
   const st = { policy: 'planner' };
+  const qp = new URLSearchParams(location.search).get('policy'); if (qp === 'flat' || qp === 'erlang') st.policy = qp;
 
   if (window.Chart) {
     Chart.defaults.font.family = "'DejaVu Sans Mono', ui-monospace, monospace";
@@ -85,7 +86,7 @@
   function renderPolicy() {
     const staff = st.P[st.policy], e = evalStaff(staff), mh = C.activeMinutes(st.plan).reduce((a, b) => a + b, 0) / 60, oh = C.opHours(staff);
     $('crewState').textContent = st.policy === 'planner' ? 'RECOMMENDED' : st.policy === 'flat' ? 'FLAT_RATIO' : 'ERLANG_C';
-    $('crewBlocks').innerHTML = staff.map((k, b) => `<div class="blk"><span class="t">${hhmm(b * C.BLOCK)}&ndash;${hhmm((b + 1) * C.BLOCK)}</span><span class="ops">${[1, 2, 3, 4, 5].map((n) => `<span class="${n === k ? 'on' : ''}">${n}</span>`).join('')}</span><span class="p" title="chance the block meets the service level">${Math.round(100 * e.okB[b])}%</span></div>`).join('');
+    $('crewBlocks').innerHTML = staff.map((k, b) => `<div class="blk"><span class="t">${hhmm(b * C.BLOCK)}&ndash;${hhmm((b + 1) * C.BLOCK)}</span><span class="ops">${[1, 2, 3, 4, 5].map((n) => `<span class="${n === k ? 'on' : ''}">${n}</span>`).join('')}</span><span class="p" style="color:${e.okB[b] < C.SLA.conf ? "#ef4b4b" : ""}" title="chance the block meets the service level">${Math.round(100 * e.okB[b])}%</span></div>`).join('');
     const minOk = Math.min(...e.okB);
     $('slReadouts').innerHTML = `<div class="r ${minOk < C.SLA.conf ? 'bad' : ''}"><span>Weakest block:</span><span>${Math.round(100 * minOk)}%</span></div>
       <div class="r"><span>Machine wait:</span><span>${e.wait.toFixed(0)} min</span></div>
